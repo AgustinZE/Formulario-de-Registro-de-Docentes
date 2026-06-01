@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de datos del docente</title>
+  <style>
+    :root {
+      --primary: #1f4e79;
+      --secondary: #f3f6fa;
+      --border: #d8dee9;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --success: #0f766e;
+      --danger: #b91c1c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #eef2f7;
+      color: var(--text);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 15px;
+      opacity: 0.95;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 16px 40px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      color: var(--primary);
+      font-size: 20px;
+      margin: 0 0 16px;
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 12px;
+      font-size: 15px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 3px solid rgba(31, 78, 121, 0.15);
+      border-color: var(--primary);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+
+    .notice {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      margin-top: 14px;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Formulario de Registro de Docentes</h1>
+    <p>Datos personales del docente y experiencia curricular que dicta</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>I. Datos personales del docente</h2>
+
+      <form id="docenteForm">
+        <div class="grid">
+          <div>
+            <label for="nombres">Nombres completos *</label>
+            <input type="text" id="nombres" required placeholder="Ejemplo: Ruth Angélica" />
+          </div>
+
+          <div>
+            <label for="apellidos">Apellidos completos *</label>
+            <input type="text" id="apellidos" required placeholder="Ejemplo: Chicana Becerra" />
+          </div>
+<div>
+            <label for="celular">Celular / WhatsApp *</label>
+            <select id="celular" required>
+              <option value="">Seleccione o escriba el número</option>
+              <option value="+51 934 762 334">+51 934 762 334</option>
+              <option value="+51 998 534 656">+51 998 534 656</option>
+              <option value="+1 (817) 829-9445">+1 (817) 829-9445</option>
+              <option value="+51 921 367 349">+51 921 367 349</option>
+              <option value="+51 942 917 630">+51 942 917 630</option>
+              <option value="+51 989 985 788">+51 989 985 788</option>
+              <option value="+51 998 091 523">+51 998 091 523</option>
+              <option value="+51 967 795 978">+51 967 795 978 - Ruth Angélica Chicana Becerra</option>
+              <option value="+51 912 748 833">+51 912 748 833</option>
+              <option value="+51 999 050 175">+51 999 050 175</option>
+              <option value="+51 997 749 043">+51 997 749 043</option>
+              <option value="+51 967 779 077">+51 967 779 077</option>
+              <option value="+51 999 068 704">+51 999 068 704</option>
+              <option value="+51 998 677 169">+51 998 677 169</option>
+              <option value="+51 999 839 465">+51 999 839 465</option>
+            </select>
+            <div class="hint">También puede editar el número en el campo siguiente.</div>
+          </div>
+
+          <div>
+            <label for="celularManual">Celular alternativo / corregido</label>
+            <input type="text" id="celularManual" placeholder="Escriba aquí si el número no aparece en la lista" />
+          </div>
+
+          <div>
+            <label for="correo">Correo electrónico *</label>
+            <input type="email" id="correo" required placeholder="docente@correo.com" />
+          </div>
+<div>
+            <label for="especialidad">Especialidad profesional</label>
+            <input type="text" id="especialidad" placeholder="Ejemplo: Gestión Pública, Derecho, Educación" />
+          </div>
+        </div>
+
+        <h2 style="margin-top: 26px;">II. Experiencia curricular que dicta</h2>
+
+        <div class="grid">
+          <div>
+            <label for="programa">Programa académico *</label>
+            <input type="text" id="programa" required placeholder="Ejemplo: Maestría, Doctorado, Pregrado" />
+          </div>
+
+          <div>
+            <label for="curso">Experiencia curricular / curso *</label>
+            <input type="text" id="curso" required placeholder="Ejemplo: Metodología de la Investigación" />
+          </div>
+
+          <div>
+            <label for="ciclo">Ciclo / semestre</label>
+            <input type="text" id="ciclo" placeholder="Ejemplo: I, II, III, 2026-I" />
+          </div>
+
+          <div>
+            <label for="seccion">Sección / grupo</label>
+            <input type="text" id="seccion" placeholder="Ejemplo: A, B, Grupo 01" />
+          </div>
+
+          <div>
+            <label for="modalidad">Modalidad</label>
+            <select id="modalidad">
+              <option value="">Seleccione</option>
+              <option>Presencial</option>
+              <option>Virtual</option>
+              <option>Semipresencial</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="sede">Sede / filial</label>
+            <input type="text" id="sede" placeholder="Ejemplo: Trujillo, Lima, Virtual" />
+          </div>
+
+          <div>
+            <label for="horario">Horario de dictado</label>
+            <input type="text" id="horario" placeholder="Ejemplo: Lunes 7:00 p.m. - 10:00 p.m." />
+          </div>
+
+          <div>
+            <label for="periodo">Periodo académico</label>
+            <input type="text" id="periodo" placeholder="Ejemplo: 2026-I" />
+          </div>
+
+          <div class="full">
+            <label for="observaciones">Observaciones</label>
+            <textarea id="observaciones" placeholder="Indicar información adicional relevante"></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-primary">Guardar registro</button>
+          <button type="button" class="btn-secondary" onclick="limpiarFormulario()">Limpiar formulario</button>
+          <button type="button" class="btn-success" onclick="exportarCSV()">Exportar a Excel/CSV</button>
+          <button type="button" class="btn-danger" onclick="borrarRegistros()">Borrar registros</button>
+        </div>
+
+        <div id="notice" class="notice">Registro guardado correctamente.</div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>III. Registros ingresados</h2>
+      <div class="table-wrapper">
+        <table id="tablaRegistros">
+          <thead>
+            <tr>
+              <th>N.º</th>
+              <th>Docente</th>
+              <th>Celular</th>
+              <th>Correo</th>
+              <th>Programa</th>
+              <th>Curso / experiencia curricular</th>
+              <th>Ciclo</th>
+              <th>Modalidad</th>
+              <th>Periodo</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Formulario web editable para registro académico de docentes.
+    </footer>
+  </main>
+
+  <script>
+    const form = document.getElementById("docenteForm");
+    const notice = document.getElementById("notice");
+    const tbody = document.querySelector("#tablaRegistros tbody");
+
+    function obtenerRegistros() {
+      return JSON.parse(localStorage.getItem("registrosDocentes") || "[]");
+    }
+
+    function guardarRegistros(registros) {
+      localStorage.setItem("registrosDocentes", JSON.stringify(registros));
+    }
+
+    function valor(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function renderizarTabla() {
+      const registros = obtenerRegistros();
+      tbody.innerHTML = "";
+
+      registros.forEach((r, index) => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${r.nombres} ${r.apellidos}</td>
+          <td>${r.celularFinal}</td>
+          <td>${r.correo}</td>
+          <td>${r.programa}</td>
+          <td>${r.curso}</td>
+          <td>${r.ciclo}</td>
+          <td>${r.modalidad}</td>
+          <td>${r.periodo}</td>
+        `;
+        tbody.appendChild(fila);
+      });
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const celularFinal = valor("celularManual") || valor("celular");
+
+      const registro = {
+        nombres: valor("nombres"),
+        apellidos: valor("apellidos"),
+        celular: valor("celular"),
+        celularManual: valor("celularManual"),
+        celularFinal: celularFinal,
+        correo: valor("correo"),
+        especialidad: valor("especialidad"),
+        programa: valor("programa"),
+        curso: valor("curso"),
+        ciclo: valor("ciclo"),
+        seccion: valor("seccion"),
+        modalidad: valor("modalidad"),
+        sede: valor("sede"),
+        horario: valor("horario"),
+        periodo: valor("periodo"),
+        observaciones: valor("observaciones"),
+        fechaRegistro: new Date().toLocaleString("es-PE")
+      };
+
+      if (!registro.celularFinal) {
+        alert("Debe seleccionar o escribir un número celular.");
+        return;
+      }
+
+      const registros = obtenerRegistros();
+      registros.push(registro);
+      guardarRegistros(registros);
+
+      form.reset();
+      renderizarTabla();
+
+      notice.style.display = "block";
+      setTimeout(() => {
+        notice.style.display = "none";
+      }, 2500);
+    });
+
+    function limpiarFormulario() {
+      form.reset();
+    }
+
+    function borrarRegistros() {
+      if (confirm("¿Está seguro de borrar todos los registros guardados?")) {
+        localStorage.removeItem("registrosDocentes");
+        renderizarTabla();
+      }
+    }
+
+    function exportarCSV() {
+      const registros = obtenerRegistros();
+
+      if (registros.length === 0) {
+        alert("No hay registros para exportar.");
+        return;
+      }
+
+      const columnas = [
+        "Nombres",
+        "Apellidos",
+        "Celular",
+        "Correo",
+        "Especialidad",
+        "Programa académico",
+        "Curso / experiencia curricular",
+        "Ciclo",
+        "Sección",
+        "Modalidad",
+        "Sede",
+        "Horario",
+        "Periodo académico",
+        "Observaciones",
+        "Fecha de registro"
+      ];
+
+      const filas = registros.map(r => [
+        r.nombres,
+        r.apellidos,
+        r.celularFinal,
+        r.correo,
+        r.especialidad,
+        r.programa,
+        r.curso,
+        r.ciclo,
+        r.seccion,
+        r.modalidad,
+        r.sede,
+        r.horario,
+        r.periodo,
+        r.observaciones,
+        r.fechaRegistro
+      ]);
+
+      const contenido = [columnas, ...filas]
+        .map(fila => fila.map(celda => `"${String(celda || "").replaceAll('"', '""')}"`).join(","))
+        .join("\n");
+
+      const blob = new Blob(["\uFEFF" + contenido], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const enlace = document.createElement("a");
+
+      enlace.href = url;
+      enlace.download = "registro_docentes.csv";
+      enlace.click();
+
+      URL.revokeObjectURL(url);
+    }
+
+    renderizarTabla();
+  </script>
+</body>
+</html>
